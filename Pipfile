@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 autopep8 = "*"
 pylint = "*"
+rope = "*"
 
 [packages]
 python-qpid-proton = "*"
@@ -15,3 +16,4 @@ python_version = "3.7"
 
 [scripts]
 send = "python send.py"
+receive = "python receive.py"
