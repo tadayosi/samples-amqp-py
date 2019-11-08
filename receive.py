@@ -17,12 +17,14 @@ class Receiver(MessagingHandler):
         event.container.create_receiver(conn, self.address)
 
     def on_link_opened(self, event):
-        print("RECEIVE: Created receiver for source address '{0}'"
-              .format(self.address))
+        print("on_link_opened: address  = {0}".format(self.address))
 
     def on_message(self, event):
         message = event.message
-        print("RECEIVE: Received message '{0}'".format(message.body))
+        print("on_message: body         = {0}".format(message.body))
+        print("on_message: annotations  = {0}".format(message.annotations))
+        print("on_message: instructions = {0}".format(message.instructions))
+        print("on_message: properties   = {0}".format(message.properties))
         event.receiver.close()
         event.connection.close()
 

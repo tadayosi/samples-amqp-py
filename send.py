@@ -19,13 +19,19 @@ class Sender(MessagingHandler):
         event.container.create_sender(conn, self.address)
 
     def on_link_opened(self, event):
-        print("SEND: Opened sender for target address '{0}'"
-              .format(event.sender.target.address))
+        print("on_link_opened: address  = {0}".format(
+            event.sender.target.address))
 
     def on_sendable(self, event):
         message = Message(self.message_body)
+        message.annotations = {
+            "aaa": "xxx",
+            "bbb": "yyy",
+            "ccc": "zzz"
+        }
         event.sender.send(message)
-        print("SEND: Sent message '{0}'".format(message.body))
+        print("on_sendable: body        = {0}".format(message.body))
+        print("on_sendable: annotations = {0}".format(message.annotations))
         event.sender.close()
         event.connection.close()
 
