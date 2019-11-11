@@ -3,6 +3,7 @@ from __future__ import print_function
 import sys
 
 from proton import Message
+from proton import symbol
 from proton.handlers import MessagingHandler
 from proton.reactor import Container
 
@@ -25,9 +26,9 @@ class Sender(MessagingHandler):
     def on_sendable(self, event):
         message = Message(self.message_body)
         message.annotations = {
-            "aaa": "xxx",
-            "bbb": "yyy",
-            "ccc": "zzz"
+            symbol("aaa"): "xxx",
+            symbol("bbb"): "yyy",
+            symbol("ccc"): "zzz"
         }
         event.sender.send(message)
         print("on_sendable: body        = {0}".format(message.body))
