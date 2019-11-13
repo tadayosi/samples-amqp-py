@@ -40,7 +40,7 @@ class Sender(MessagingHandler):
 def main():
     conn_url = "amqp://localhost:5672"
     address = "sample.queue"
-    message_body = "Hello!"
+    message_body = "Hello from Python!"
 
     sender = Sender(conn_url, address, message_body)
     container = Container(sender)
