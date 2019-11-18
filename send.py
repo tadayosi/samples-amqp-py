@@ -1,9 +1,9 @@
 from __future__ import print_function
 
+import datetime
 import sys
 
-from proton import Message
-from proton import symbol
+from proton import Message, symbol
 from proton.handlers import MessagingHandler
 from proton.reactor import Container
 
@@ -25,6 +25,7 @@ class Sender(MessagingHandler):
 
     def on_sendable(self, event):
         message = Message(self.message_body)
+        message.creation_time = datetime.datetime.now().timestamp()
         message.annotations = {
             symbol("aaa"): "xxx",
             symbol("bbb"): "yyy",
